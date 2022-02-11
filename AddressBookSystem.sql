@@ -30,6 +30,9 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
+
+
+--uc-5 delete person based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
@@ -45,6 +48,7 @@ values('sirsu','Bhajantri','shivaji circle Jamkhandi','Belgavi','Karnataka',5900
 select Count(*),state,City
 from Address_Book_Table
 Group by state,City
+
 
 ----uc-8 ability to sort by person name bycity---
 select *from Address_Book_Table
@@ -73,3 +77,4 @@ set AddressBookName='shetes',Type='Dears'
 where FirstName='gouri'
 
 select *from Address_Book_Table;
+
