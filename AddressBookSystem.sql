@@ -30,6 +30,8 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
+
+--uc-5 delete person based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
@@ -82,7 +84,6 @@ Group by Type
 select type,count(*)
 from Address_Book_Table
 group by type;
-
 
 ---uc-11 add Prerson NAme both family anf Profession
 Insert into Address_Book_Table(FirstName,LastName,Address,City,State,zip,PhoneNumber,Email) 
@@ -145,3 +146,5 @@ join addressbookMappeing d
 on a.contactid= d.contactId
 join AddressBookNames b
 on b.addressBookId= d.addressbookId
+
+
