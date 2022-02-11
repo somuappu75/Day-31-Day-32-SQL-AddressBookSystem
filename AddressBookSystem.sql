@@ -30,14 +30,12 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
---uc-5 delete person based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
 
 select *from Address_Book_Table;
 
---uc-6 retrieve by city or state------
 select * from Address_Book_Table
 where City='bangalore' or State='chennai'
 
@@ -84,3 +82,66 @@ Group by Type
 select type,count(*)
 from Address_Book_Table
 group by type;
+
+
+---uc-11 add Prerson NAme both family anf Profession
+Insert into Address_Book_Table(FirstName,LastName,Address,City,State,zip,PhoneNumber,Email) 
+values('Appu','Havinal','Near Satti Road','Athani','Karnataka',591304,9731390823,'somusp75@gmail.com'),
+('Suresh','Koparde','Main Road','Banahatti','Karnataka',587311,9980431245,'chetu65@gmail.com');
+
+update Address_Book_Table
+set AddressBookName='Mom',Type='Family'
+where FirstName='Suresh'
+
+update Address_Book_Table
+set AddressBookName='MD',Type='Profession'
+where FirstName='Appu'
+
+----adding Family---
+select * from Address_Book_Table;
+insert into Address_Book_Table
+values ('Santosh','poojari','sasalatti','Teradal','UP',591304,9876543210,'SAntosh@gmail','Mom','Family');
+--Addding to Profession
+select * from Address_Book_Table;
+insert into Address_Book_Table
+values ('Santosh','poojari','sasalatti','Teradal','UP',591304,9876543210,'SAntosh@gmail','MD','Profession');
+
+--uc-12-Creating different entities 
+--creating table typeofcontacts
+create table TypesOfContacts
+(
+typeid int primary key ,
+typename varchar(50) not null);
+--inserting data into type of contacts
+insert into Typesofcontacts
+values
+(1,'Family'),
+(2,'Friends'),
+(3,'Business');
+alter table Address_BooK_Table
+add contactid int primary key identity(1,1);
+
+select *from Address_Book_Table;
+
+create table AddressBookNames
+(addressBookId int primary key identity(1,1),
+addressBookName varchar(50) not null );
+---inserting values to addressbokk table--
+insert into AddressBooknames values ('S'),('P'),('H');
+select * from AddressBookNames;
+
+---creating table address book names mapper which will contain contact id and address book names id---
+create table addressbookMappeing
+(contactid int not null, addressbookid int not null);
+--inserting data into address book mapper id
+insert into addressbookMappeing
+values
+(1,1),(2,1),(3,2);
+
+select * from Address_Book_Table;
+select a.firstname,a.phoneNumber,a.city,a.state,a.eMail,b.addressbookname,b.addressBookId
+from Address_Book_Table a
+join addressbookMappeing d
+on a.contactid= d.contactId
+join AddressBookNames b
+on b.addressBookId= d.addressbookId
