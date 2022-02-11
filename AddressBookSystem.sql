@@ -11,6 +11,7 @@ State varchar(100),
 zip BigInt,
 PhoneNumber BigInt,
 Email varchar(200)
+)
 
 --UC-3 inserting values to the table
 Insert into Address_Book_Table(FirstName,LastName,Address,City,State,zip,PhoneNumber,Email) 
@@ -20,7 +21,7 @@ values('somu','Havinal','Near Satti Road','Athani','Karnataka',591304,9731390823
 
 select *from Address_Book_Table;
 
- UC-4_EditContactByName
+--Uc-4 edititng contact using name
 Update Address_Book_Table
 set Email='ChetanKoparde@gmail.com'
 where FirstName='chetan'
@@ -28,4 +29,12 @@ where FirstName='chetan'
 Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
- select *from Address_Book_Table;
+
+delete 
+from Address_Book_Table
+where FirstName='chetan' and LastName='Koparde'
+
+select *from Address_Book_Table;
+
+select * from Address_Book_Table
+where City='bangalore' or State='chennai'
