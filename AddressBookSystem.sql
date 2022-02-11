@@ -146,6 +146,7 @@ on a.contactid= d.contactId
 join AddressBookNames b
 on b.addressBookId= d.addressbookId
 
+
 -- UC-13 Retrieving data using new table structure 
 --UC6
 select FirstName,LastName,city from Address_Book_Table
