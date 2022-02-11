@@ -30,20 +30,12 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
-
---uc-5 deleteperson based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
 
 select *from Address_Book_Table;
 
-
-select * from Address_Book_Table
-where City='bangalore' or State='chennai'
-
-
---uc-6 retrieve data basedon city or state
 select * from Address_Book_Table
 where City='bangalore' or State='chennai'
 
@@ -53,3 +45,31 @@ values('sirsu','Bhajantri','shivaji circle Jamkhandi','Belgavi','Karnataka',5900
 select Count(*),state,City
 from Address_Book_Table
 Group by state,City
+
+----uc-8 ability to sort by person name bycity---
+select *from Address_Book_Table
+where City='bangalore'
+order by FirstName,LastName;
+
+---uc-9 Adding Address Book With Name and Type-----
+alter table Address_Book_Table
+add AddressBookName varchar(100),
+Type varchar(100)
+
+
+--update vaalues for craeted book name and type column---
+update Address_Book_Table
+set AddressBookName='PuneetFans',Type='Fan_group'
+where FirstName='chetan' or FirstName='somu'
+
+--update vaalues for craeted book name and type column---
+update Address_Book_Table
+set AddressBookName='havinals',Type='Family'
+where FirstName='sirsu'
+
+--update vaalues for craeted book name and type column---
+update Address_Book_Table
+set AddressBookName='shetes',Type='Dears'
+where FirstName='gouri'
+
+select *from Address_Book_Table;
