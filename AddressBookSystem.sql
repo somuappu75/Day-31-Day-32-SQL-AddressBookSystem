@@ -30,12 +30,14 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
+--uc-5 delete person based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
 
 select *from Address_Book_Table;
 
+--uc-6 retrieve by city or state------
 select * from Address_Book_Table
 where City='bangalore' or State='chennai'
 
