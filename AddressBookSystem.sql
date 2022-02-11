@@ -30,15 +30,12 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
-
---uc-5 delete person based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
 
 select *from Address_Book_Table;
 
---uc-6 retrieve by city or state------
 select * from Address_Book_Table
 where City='bangalore' or State='chennai'
 
@@ -87,7 +84,6 @@ from Address_Book_Table
 group by type;
 
 
-
 ---uc-11 add Prerson NAme both family anf Profession
 Insert into Address_Book_Table(FirstName,LastName,Address,City,State,zip,PhoneNumber,Email) 
 values('Appu','Havinal','Near Satti Road','Athani','Karnataka',591304,9731390823,'somusp75@gmail.com'),
@@ -109,3 +105,68 @@ values ('Santosh','poojari','sasalatti','Teradal','UP',591304,9876543210,'SAntos
 select * from Address_Book_Table;
 insert into Address_Book_Table
 values ('Santosh','poojari','sasalatti','Teradal','UP',591304,9876543210,'SAntosh@gmail','MD','Profession');
+
+--uc-12-Creating different entities 
+--creating table typeofcontacts
+create table TypesOfContacts
+(
+typeid int primary key ,
+typename varchar(50) not null);
+--inserting data into type of contacts
+insert into Typesofcontacts
+values
+(1,'Family'),
+(2,'Friends'),
+(3,'Business');
+alter table Address_BooK_Table
+add contactid int primary key identity(1,1);
+
+select *from Address_Book_Table;
+
+create table AddressBookNames
+(addressBookId int primary key identity(1,1),
+addressBookName varchar(50) not null );
+---inserting values to addressbokk table--
+insert into AddressBooknames values ('S'),('P'),('H');
+select * from AddressBookNames;
+
+---creating table address book names mapper which will contain contact id and address book names id---
+create table addressbookMappeing
+(contactid int not null, addressbookid int not null);
+--inserting data into address book mapper id
+insert into addressbookMappeing
+values
+(1,1),(2,1),(3,2);
+
+select * from Address_Book_Table;
+select a.firstname,a.phoneNumber,a.city,a.state,a.eMail,b.addressbookname,b.addressBookId
+from Address_Book_Table a
+join addressbookMappeing d
+on a.contactid= d.contactId
+join AddressBookNames b
+on b.addressBookId= d.addressbookId
+
+-- UC-13 Retrieving data using new table structure 
+--UC6
+select FirstName,LastName,city from Address_Book_Table
+where FirstName='Appu';
+
+--UC7
+select city,count(*) from Address_Book_Table
+where city='Athani'
+group by city;
+
+--UC8
+select * from  Address_Book_Table
+where city='Athani'
+order by FirstName,LastName;
+
+--UC10
+select * from Address_Book_Table;
+
+select typename,count(*) numberOfContactPersons from Address_Book_Table a
+join addressbookMappeing am
+on am.contactid= a.contactid
+join TypesOfContacts t
+on t.typeid= am.addressbookid
+group by t.typename;
