@@ -30,9 +30,6 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
-
-
---uc-5 delete person based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
@@ -48,7 +45,6 @@ values('sirsu','Bhajantri','shivaji circle Jamkhandi','Belgavi','Karnataka',5900
 select Count(*),state,City
 from Address_Book_Table
 Group by state,City
-
 
 ----uc-8 ability to sort by person name bycity---
 select *from Address_Book_Table
@@ -78,3 +74,34 @@ where FirstName='gouri'
 
 select *from Address_Book_Table;
 
+----uc-10 get get number of contact based on count by type-----
+select Count(*) as NumberOfContacts,Type
+from Address_Book_Table
+Group by Type
+
+select type,count(*)
+from Address_Book_Table
+group by type;
+
+
+---uc-11 add Prerson NAme both family anf Profession
+Insert into Address_Book_Table(FirstName,LastName,Address,City,State,zip,PhoneNumber,Email) 
+values('Appu','Havinal','Near Satti Road','Athani','Karnataka',591304,9731390823,'somusp75@gmail.com'),
+('Suresh','Koparde','Main Road','Banahatti','Karnataka',587311,9980431245,'chetu65@gmail.com');
+
+update Address_Book_Table
+set AddressBookName='Mom',Type='Family'
+where FirstName='Suresh'
+
+update Address_Book_Table
+set AddressBookName='MD',Type='Profession'
+where FirstName='Appu'
+
+----adding Family---
+select * from Address_Book_Table;
+insert into Address_Book_Table
+values ('Santosh','poojari','sasalatti','Teradal','UP',591304,9876543210,'SAntosh@gmail','Mom','Family');
+--Addding to Profession
+select * from Address_Book_Table;
+insert into Address_Book_Table
+values ('Santosh','poojari','sasalatti','Teradal','UP',591304,9876543210,'SAntosh@gmail','MD','Profession');
