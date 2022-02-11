@@ -11,6 +11,7 @@ State varchar(100),
 zip BigInt,
 PhoneNumber BigInt,
 Email varchar(200)
+)
 
 
 
@@ -32,10 +33,14 @@ Update Address_Book_Table
 set Address='Main Road Rampur'
 where FirstName='gouri' and LastName='shete';
 
- --UC-5_DeletePersonByName
-
+--uc-5 deleteperson based on name
 delete 
 from Address_Book_Table
 where FirstName='chetan' and LastName='Koparde'
+
 select *from Address_Book_Table;
+
+--uc-6 retrieve data basedon city or state
+select * from Address_Book_Table
+where City='bangalore' or State='chennai'
 
